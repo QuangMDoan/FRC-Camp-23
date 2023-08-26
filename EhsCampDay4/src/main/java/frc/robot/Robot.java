@@ -4,9 +4,10 @@
 
 package frc.robot;
 
+import edu.wpi.first.wpilibj.motorcontrol.Spark;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.TimedRobot;
-import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -15,7 +16,9 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  * project.
  */
 public class Robot extends TimedRobot {
- 
+  private final Spark _leftMotor = new Spark(0);
+  private final Spark _rightMotor = new Spark(1);
+  private final Timer _timer = new Timer();
 
   /**
    * This function is run when the robot is first started up and should be used for any
@@ -23,6 +26,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotInit() {
+    _rightMotor.setInverted(true);
   }
 
   /**
@@ -47,11 +51,22 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void autonomousInit() {
+    _timer.restart();
   }
 
   /** This function is called periodically during autonomous. */
   @Override
   public void autonomousPeriodic() {
+    if (_timer.get() < 2) {
+      _leftMotor.set(0.5);
+      _rightMotor.set(0.5);
+    } else if (_timer.get() < 4) {
+      _leftMotor.set(0.2);
+      _rightMotor.set(0.2);
+    } else {
+      _leftMotor.stopMotor();
+      _rightMotor.stopMotor();
+    }
   }
 
   /** This function is called once when teleop is enabled. */
