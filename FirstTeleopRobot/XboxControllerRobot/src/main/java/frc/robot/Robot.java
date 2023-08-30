@@ -70,11 +70,11 @@ public class Robot extends TimedRobot {
   /** This function is called periodically during operator control. */
   @Override
   public void teleopPeriodic() {
-    
+    double drivingSpeed = _controller.getLeftY();
     double steeringSpeed = _controller.getRightX();
     SmartDashboard.putNumber("Steering", steeringSpeed);
 
-    _robotDrive.arcadeDrive(-_controller.getLeftY(), -steeringSpeed, false);
+    _robotDrive.arcadeDrive(-drivingSpeed, -steeringSpeed, false);
   }
 
   /** This function is called once when the robot is disabled. */
