@@ -5,7 +5,7 @@ import edu.wpi.first.wpilibj.motorcontrol.Spark;
 import edu.wpi.first.wpilibj.romi.RomiGyro;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
-public class Drivetrain extends SubsystemBase{
+public class Drivetrain extends SubsystemBase {
 
   public static final double kPulsesPerRevolution = 1440.0;
   public static final double kWheelDiameterCM = 6.75;
@@ -43,11 +43,11 @@ public class Drivetrain extends SubsystemBase{
     rightMotor.set(right);
   }
 
-  public double getLeftWheelSpeed() {
+  public double getLeftEncoderSpeed() {
     return leftEncoder.getRate();
   }
 
-  public double getRightWheelSpeed() {
+  public double getRightEncoderSpeed() {
     return rightEncoder.getRate();
   }
 
